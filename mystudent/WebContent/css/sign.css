@@ -1,0 +1,136 @@
+/*custom font*/
+@import url(http://fonts.googleapis.com/css?family=Montserrat);
+
+/*basic reset*/
+* {margin: 0; padding: 0;}
+
+html {
+	height: 100%;
+	/*Image only BG fallback*/
+	background: url('https://ww1.sinaimg.cn/large/0060lm7Tgy1fehnthhwvbj31hc0u0kjl.jpg') no-repeat fixed bottom center;
+	background-size: cover;
+	/*background = gradient + image pattern combo
+	background:
+		linear-gradient(rgba(196, 102, 0, 0.2), rgba(155, 89, 182, 0.2)),
+		url('http://thecodeplayer.com/uploads/media/gs.png');*/
+}
+
+body {
+	font-family: montserrat, arial, verdana;
+}
+/*整体表单样式*/
+#msform {
+	width: 25%;
+	margin: 15% auto;
+	text-align: center;
+	position: relative;
+}
+/*定义信息块样式*/
+#msform fieldset {
+	background: white;
+	border: 0 none;
+	border-radius: 3px;
+	box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+	padding: 20px 30px;
+	
+	box-sizing: border-box;
+	width: 80%;
+	margin: 0 10%;
+	
+	/*绝对定位覆盖其他信息块*/
+	position: absolute;
+}
+/*隐藏其他信息块*/
+#msform fieldset:not(:first-of-type) {
+	display: none;
+}
+/*信息输入框*/
+#msform input, #msform textarea {
+	padding: 15px;
+	width: 100%;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	margin-bottom: 15px;
+	box-sizing: border-box;
+	font-family: montserrat;
+	color: #2C3E50;
+	font-size: 15px;
+}
+/*按钮*/
+#msform .action-button {
+	width: 100px;
+	background: #27AE60;
+	font-weight: bold;
+	color: white;
+	border: 0 none;
+	border-radius: 2px;
+	cursor: pointer;
+	padding: 10px 5px;
+	margin: 10px 5px;
+}
+/*按钮hover实现外框浮现前景色*/
+#msform .action-button:hover, #msform .action-button:focus {
+	box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
+}
+/*信息框提示信息*/
+.fs-title {
+	font-size: 15px;
+	text-transform: uppercase;
+	color: #2C3E50;
+	margin-bottom: 10px;
+}
+.fs-subtitle {
+	font-weight: normal;
+	font-size: 13px;
+	color: #666;
+	margin-bottom: 20px;
+}
+/*进度指示*/
+#progressbar {
+	margin-bottom: 30px;
+	overflow: hidden;
+	/*CSS counters to number the steps*/
+	counter-reset: step;
+}
+#progressbar li {
+	list-style-type: none;
+	color: black;
+	text-transform: uppercase;
+	font-size: 9px;
+	width: 33.33%;
+	float: left;
+	position: relative;
+}
+#progressbar li:before {
+	content: counter(step);
+	counter-increment: step;
+	width: 20px;
+	line-height: 20px;
+	display: block;
+	font-size: 10px;
+	color: #333;
+	background: white;
+	border-radius: 3px;
+	margin: 0 auto 5px auto;
+}
+/*progressbar connectors*/
+#progressbar li:after {
+	content: '';
+	width: 100%;
+	height: 2px;
+	background: white;
+	position: absolute;
+	left: -50%;
+	top: 9px;
+	z-index: -1; /*put it behind the numbers*/
+}
+#progressbar li:first-child:after {
+	/*connector not needed before the first step*/
+	content: none; 
+}
+/*marking active/completed steps green*/
+/*The number of the step and the connector before it = green*/
+#progressbar li.active:before,  #progressbar li.active:after{
+	background: #27AE60;
+	color: white;
+}
